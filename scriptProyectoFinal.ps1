@@ -29,14 +29,22 @@ If($opcion = 2)
     }     
 If($opcion = 3)
     {
-      Write-Host 'Desplegar el nombre y el tamaño del archivo más grande almacenado en un disco o
-filesystem que el usuario deberá especificar. El archivo debe aparecer con su trayectoria
-completa'
+      Write-Host 'Desplegar el nombre y el tamaño del archivo más grande almacenado en un disco o filesystem que el usuario deberá especificar. El archivo debe aparecer con su trayectoria completa'
+      Write-Host 'Escribe la ruta del directorio'
+        param([Parameter(Mandatory=$true)]$ruta=$args[0])
+        If($ruta:paramMissing)
+        {
+            throw �No ha escrito ninguna ruta: debes escribir una ruta, ejemplo c:\windows\system32�
+        }else{
+            get-childitem -path $ruta
+        }    
 	
     }
 If($opcion = 4)
     {
       Write-Host 'Cantidad de memoria libre y cantidad del espacio de swap en uso (en bytes y porcentaje)'
+      
+        
 	
     }
 If($opcion = 5)
