@@ -6,7 +6,7 @@
         c:\windows\system32″
         It will return all the elements that you have in the system32 directory.
     .DESCRIPTION
-        Desplegar los cinco procesos que más CPU esté consumiendo en ese momento.
+        1. Desplegar los cinco procesos que más CPU esté consumiendo en ese momento.
 		2. Desplegar los filesystems o discos conectados a la máquina. Incluir para cada disco su
 		tamaño y la cantidad de espacio libre (en bytes).
 		3. Desplegar el nombre y el tamaño del archivo más grande almacenado en un disco o
@@ -16,39 +16,38 @@
 		5. Número de conexiones de red activas actualmente (en estado ESTABLISHED).
         
 #>
-param([Parameter(Mandatory=$true)]$opcion=$args[0])
-If($opcion = 1)
-    {
-      Write-Host 'Desplegar los cinco procesos que más CPU esté consumiendo en ese momento'
-	Get-Process
-    }
-If($opcion = 2)
-    {
-      Write-Host 'Desplegar los filesystems o discos conectados a la máquina. Incluir para cada disco su tamaño y la cantidad de espacio libre (en bytes).'
-	
-    }     
-If($opcion = 3)
-    {
-      Write-Host 'Desplegar el nombre y el tamaño del archivo más grande almacenado en un disco o filesystem que el usuario deberá especificar. El archivo debe aparecer con su trayectoria completa'
-      Write-Host 'Escribe la ruta del directorio'
-        param([Parameter(Mandatory=$true)]$ruta=$args[0])
-        If($ruta:paramMissing)
-        {
-            throw �No ha escrito ninguna ruta: debes escribir una ruta, ejemplo c:\windows\system32�
-        }else{
-            get-childitem -path $ruta
-        }    
-	
-    }
-If($opcion = 4)
-    {
-      Write-Host 'Cantidad de memoria libre y cantidad del espacio de swap en uso (en bytes y porcentaje)'
-      
-        
-	
-    }
-If($opcion = 5)
-    {
-      Write-Host 'Número de conexiones de red activas actualmente (en estado ESTABLISHED)'
-	
-    }
+Clear-Host
+do{
+Write-Host "================ Administrador de servidor ================"
+    
+    Write-Host "1: Desplegar los cinco procesos que mas CPU esta consumiendo en ese momento"
+    Write-Host "2: Desplegar los filesystems o discos conectados a la maquina. Incluir para cada disco su
+		tamanio y la cantidad de espacio libre (en bytes)"
+    Write-Host "3: Desplegar el nombre y el tamanio del archivo mas grande almacenado en un disco o
+		filesystem que el usuario deberá especificar. El archivo debe aparecer con su trayectoria
+		completa"
+    Write-Host "4: Cantidad de memoria libre y cantidad del espacio de swap en uso (en bytes y porcentaje)"
+    Write-Host "5: Numero de conexiones de red activas actualmente (en estado ESTABLISHED)"
+    Write-Host "Q: para salir de este menu"
+
+
+    $selection = Read-Host "Por favor selecciona una opcion: "
+ switch ($selection)
+ {
+     '1' {
+         'You chose option #1'
+         Get-Process
+     }
+     '2' {
+         'You chose option #2'
+     }
+     '3' {
+        'You chose option #3'
+     }
+     'q' {
+         return
+     }
+ }
+ pause
+ }
+ until ($selection -eq 'q')
