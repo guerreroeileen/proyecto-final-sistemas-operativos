@@ -47,8 +47,7 @@ Write-Host "================ Administrador de servidor ================"
      }
      
      '4' {
-         'You chose option #4'
-         Get-Process
+         Get-Counter '\Process(*)\Page File Bytes'
      }
      '5' {
           $result=Get-NetTCPConnection -State Established | measure
