@@ -35,8 +35,7 @@ Write-Host "================ Administrador de servidor ================"
  switch ($selection)
  {
      '1' {
-         'You chose option #1'
-         Get-Process
+         Get-Process | Sort CPU -descending | Select -first 5 -Property ID,ProcessName,CPU | format-table -autosize
      }
      '2' {
          'You chose option #2'
@@ -44,9 +43,15 @@ Write-Host "================ Administrador de servidor ================"
      '3' {
         'You chose option #3'
      }
-     'q' {
-         return
+     
+     '4' {
+         'You chose option #4'
+         Get-Process
      }
+     '5' {
+         'You chose option #5'
+     }
+
  }
  pause
  }
