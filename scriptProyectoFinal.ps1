@@ -49,7 +49,8 @@ Write-Host "================ Administrador de servidor ================"
          Get-Process
      }
      '5' {
-         'You chose option #5'
+          $result=Get-NetTCPConnection -State Established | measure
+          $result.Count
      }
 
  }
