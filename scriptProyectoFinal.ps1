@@ -38,10 +38,12 @@ Write-Host "================ Administrador de servidor ================"
          Get-Process | Sort CPU -descending | Select -first 5 -Property ID,ProcessName,CPU | format-table -autosize
      }
      '2' {
-         'You chose option #2'
+         gdr -PSProvider 'FileSystem'
      }
      '3' {
-        'You chose option #3'
+        
+        $route = Read-Host "Por favor escribe una ruta valida o presiona enter para selccionar directorio actual: "
+        gci -Path $route -r| sort -descending -property length | select -first 1 name, length
      }
      
      '4' {
