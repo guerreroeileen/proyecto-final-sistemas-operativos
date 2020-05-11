@@ -48,7 +48,14 @@ Write-Host "================ Administrador de servidor ================"
      }
      
      '4' {
-         Get-Counter '\Process(*)\Page File Bytes'
+         #Get-Counter '\Process(*)\Page File Bytes'
+	Get-CIMInstance Win32_OperatingSystem | 
+	select @{n="Memoria Fisica Libre (B)";e={$_.FreePhysicalMemory}}, 
+	@{n="Memoria Fisica Libre (%)";e={($_.FreePhysicalMemory / $_.TotalVisibleMemorySize)}},
+	@{n="Memoria Virtual Libre (B)";e={$_.FreeVirtualMemory}},
+	@{n="Memoria Virtual Libre (%)";e={($_.FreeVirtualMemory / $_.TotalVirtualMemorySize)}},
+	@{n="Espacio Swap Ocupado (B)";e={$_.SizeStoredInPagingFiles}},
+	@{n="Espacio Swap Ocupado (%)";e={($_.SizeStoredInPagingFiles / ($_.SizeStoredInPagingFiles + $_.FreeSpaceInPagingFiles))}} | fl
      }
      '5' {
           $result=Get-NetTCPConnection -State Established | measure
