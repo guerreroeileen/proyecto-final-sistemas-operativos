@@ -41,9 +41,12 @@ Write-Host "================ Administrador de servidor ================"
          gdr -PSProvider 'FileSystem'
      }
      '3' {
+     <#
         
         $route = Read-Host "Por favor escribe una ruta valida o presiona enter para selccionar directorio actual: "
-        gci -Path $route -r| sort -descending -property length | select -first 1 name, length
+        gci -Path $route -r| sort -descending -property length | select -first 1 name, length #>
+        $ErrorActionPreference = "SilentlyContinue"
+        gci -r| sort -descending -property length | select -first 1 name, length, directorio -EA SilentlyContinue
      }
      
      '4' {
