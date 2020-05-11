@@ -42,7 +42,6 @@ Write-Host "================ Administrador de servidor ================"
 	 gdr | ft -Property Root,@{name='Tamano(B)'; expression={$_.Free+$_.Used}}, @{name='Espacio libre(B)'; expression={$_.Free}}	
      }
      '3' {
-        
         $route = Read-Host "Por favor escribe una ruta valida o presiona enter para selccionar directorio actual: "
         #gci -Path $route -r| sort -descending -property length | select -first 1 name, length
 	gci -r| sort -descending -property length | select -first 1 FullName, length
