@@ -1,5 +1,5 @@
 # proyecto-final-sistemas-operativos
-Estudiantes: Eileen Guerrero Gómez, Juan Manuel
+Estudiantes: Eileen Guerrero Gómez, Juan Manuel López
 
 El proyecto consiste en la elaboración de una herramienta (en Powershell o en bash) que facilite las
 labores del administrador de un data center.
